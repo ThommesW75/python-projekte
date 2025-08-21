@@ -1,18 +1,19 @@
+#!/usr/bin/env python3
 """
 Ein einfaches Kommandozeilen-Tool (CLI), das als Aufräum-Helfer dient.
 
 Das Skript ist in Funktionen strukturiert, um die Lesbarkeit und
 Wiederverwendbarkeit des Codes zu demonstrieren. Es listet alle
 .txt-Dateien in einem vordefinierten Ordner auf.
+
+Version 2: Enthält einen Shebang für Linux und nutzt dynamische Pfade,
+um Sicherheit und Portabilität zu gewährleisten.
 """
 
 # Importe stehen immer ganz am Anfang des Skripts.
-# Wir importieren das os-Modul, um mit dem Betriebssystem zu interagieren.
 import os
 
 # --- Funktionsdefinitionen ---
-# Hier definieren wir unsere Werkzeuge (unsere Funktionen).
-# Dieser Code wird erst ausgeführt, wenn die Funktionen später aufgerufen werden.
 
 def begruessung_anzeigen():
     """Gibt eine einfache Startnachricht auf der Konsole aus."""
@@ -21,8 +22,18 @@ def begruessung_anzeigen():
 def finde_text_dateien():
     """Durchsucht einen Zielordner und listet alle .txt-Dateien auf."""
     
-    # Der Pfad zum Ordner, der durchsucht werden soll.
-    ziel_ordner = "/home/thommesw/lpic-lernen/"
+    # --- Professionelle Pfad-Erstellung (Sicher & Portabel) ---
+    # Anstatt den Pfad festzuschreiben, bauen wir ihn dynamisch zusammen.
+    
+    # 1. Finde das Home-Verzeichnis des aktuellen Benutzers (z.B. '/home/thommesw').
+    #    os.path.expanduser('~') ist der sichere Weg, dies zu tun.
+    home_verzeichnis = os.path.expanduser('~')
+    
+    # 2. Verbinde das Home-Verzeichnis mit unserem Ziel-Unterordner.
+    #    os.path.join() baut den Pfad systemkorrekt zusammen (mit / auf Linux).
+    ziel_ordner = os.path.join(home_verzeichnis, "lpic-lernen")
+    
+    print(f"Durchsuche Ordner: {ziel_ordner}") # Feedback für den User
     
     # os.listdir() gibt eine Liste aller Dateien und Ordner im Zielordner zurück.
     alle_eintraege = os.listdir(ziel_ordner)
@@ -37,8 +48,6 @@ def finde_text_dateien():
             print(eintrag)
 
 # --- Hauptprogramm ---
-# Das eigentliche Programm beginnt hier. Der Code wird von oben nach unten ausgeführt.
-# Wir rufen unsere zuvor definierten Funktionen in der gewünschten Reihenfolge auf.
-
+# Das eigentliche Programm beginnt hier.
 begruessung_anzeigen()
 finde_text_dateien()
