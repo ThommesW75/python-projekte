@@ -47,7 +47,7 @@ def synchronisiere_archiv(quellordner, archiv_pfad, datei_praefix):
     # 1. Eine Liste aller zu archivierenden .txt-Dateien im Quellordner erstellen
     zu_archivierende_dateien = []
     for eintrag in os.listdir(quellordner):
-        if eintrag.startswith(datei_praefix) and eintrag.endswith(".txt"):
+        if eintrag.startswith(datei_praefix) and eintrag.endswith(('.txt', '.md')):
             voller_pfad = os.path.join(quellordner, eintrag)
             zu_archivierende_dateien.append(voller_pfad)
 
