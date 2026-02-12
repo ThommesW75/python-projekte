@@ -1,0 +1,19 @@
+# Virtuelle Umgebungen (sehr wichtig!)
+.venv/
+venv/
+ENV/
+bin/
+lib/
+include/
+
+# PyCharm & IDEs
+.idea/
+.vscode/
+
+# Python-Cache
+__pycache__/
+*.pyc
+
+# System-Müll
+.DS_Store
+Thumbs.db
